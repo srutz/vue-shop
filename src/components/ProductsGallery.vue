@@ -4,10 +4,12 @@
 
 <div class="flex flex-col grow h-1">
     <div class="flex flex-wrap gap-2">
-        <ProductCard v-for="product in products" :key="product.id" :product="product"></ProductCard>
+        <AnimatedDiv v-for="(product, i) in products" :key="product.id" :delayMs="i * 100" :opacity="0" :scale="0" :durationMs="250">
+            <ProductCard :product="product"></ProductCard>
+        </AnimatedDiv>
     </div>
     <div class="flex m-2">
-        <button @click="onLoadMore">Weitere laden</button>
+        <button v-if="products.length > 0" @click="onLoadMore">Weitere laden</button>
     </div>
     <div class="min-h-2"> </div>
 </div>
@@ -18,6 +20,7 @@
 import { onMounted, reactive } from 'vue';
 import { Product, ProductResponse } from '../types';
 import ProductCard from './ProductCard.vue';
+import AnimatedDiv from './AnimatedDiv.vue';
 
 const products = reactive<Product[]>([])
 let offset = 0

@@ -2,7 +2,7 @@
 </style>
 <template>
 
-<div class="w-80 border rounded overflow-hidden shadow-lg flex flex-col mb-8 cursor-pointer hover:bg-gray-100">
+<div class="w-80 border rounded overflow-hidden shadow-lg grow flex flex-col mb-8 cursor-pointer hover:bg-gray-100">
     <div class="flex justify-center">
         <img class="w-full" style="width: auto; height: 120px;" :src="product.thumbnail" :alt="product.title">
     </div>
