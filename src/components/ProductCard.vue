@@ -3,7 +3,7 @@
 <template>
 
 <div class="w-80 border rounded overflow-hidden shadow-lg grow flex flex-col mb-8 cursor-pointer hover:bg-gray-100">
-    <router-link :to="`/product/${product.id}`">
+    <router-link :to="`/product/${product.id}`" class="grow">
         <div class="flex justify-center">
             <img class="w-full" style="width: auto; height: 120px;" :src="product.thumbnail" :alt="product.title">
         </div>
@@ -14,7 +14,7 @@
         </div>
     </router-link>
     <div class="px-6 pt-4 pb-2">
-        <button>
+        <button @click="onBuy">
         Buy Now
         </button>
     </div>
@@ -24,16 +24,26 @@
 </template>
 <script setup lang="ts">
 
-import { defineProps, reactive } from 'vue';
+import { defineProps, inject, reactive } from 'vue';
 import { Product } from '../types';
+import { CartItem } from '../types';
 
 const props = defineProps<{
   product: Product
 }>()
 
-console.table(props.product)
-
 const product = reactive<Product>(props.product)
+
+// mini cart
+const cartItems = inject<CartItem[]>('items') || [];
+const onBuy = () => {
+    const item = cartItems.find((item) => item.product.id === product.id)
+    if (item) {
+        item.quantity += 1
+    } else {
+        cartItems.push({ product: product, quantity: 1 })
+    }
+}
 
 
 

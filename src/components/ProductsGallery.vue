@@ -25,15 +25,15 @@ import AnimatedDiv from './AnimatedDiv.vue';
 const products = reactive<Product[]>([])
 const offset = ref(0)
 
-onMounted(() => {
-    loadProducts()
-})
-
 const loadProducts = async () => {
-    const response = await fetch(`https://dummyjson.com/products?skip=${offset.value}&limit=4`)
+    const response = await fetch(`https://dummyjson.com/products?skip=${offset.value}&limit=10`)
     const data = (await response.json()) as ProductResponse
     products.push(...data.products)
 }
+
+onMounted(() => {
+    loadProducts()
+})
 
 const onLoadMore = () => {
     offset.value += products.length

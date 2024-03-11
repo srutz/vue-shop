@@ -6,4 +6,5 @@
 
 import ProductsGallery from '../components/ProductsGallery.vue';
 
+
 </script>

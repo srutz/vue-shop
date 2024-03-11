@@ -4,8 +4,9 @@ import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import ProductsPage from './pages/ProductsPage.vue'
-import AboutPage from './pages/AboutPage.vue'
 import ProductDetails from './pages/ProductDetailsPage.vue'
+import AboutPage from './pages/AboutPage.vue'
+import CartPage from './pages/CartPage.vue'
 
 
 const router = createRouter({
@@ -14,6 +15,7 @@ const router = createRouter({
         { path: '/', component: ProductsPage },
         { path: '/product/:id', component: ProductDetails },
         { path: '/about', component: AboutPage },
+        { path: '/cart', component: CartPage },
     ],
 })
 

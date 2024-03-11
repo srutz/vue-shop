@@ -17,6 +17,8 @@ export type ProductResponse = {
     products: Product[]
 }
 
-export function yo() {
-    console.log("yo")
+export type CartItem = {
+    product: Product,
+    quantity: number,
 }
+
