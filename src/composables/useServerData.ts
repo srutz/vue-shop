@@ -15,7 +15,6 @@ export function useFetch<T>(url: string|Ref<string>, options?: RequestInit) {
         const rawUrl = toValue(url)
         data.value = null
         error.value = null
-        debugger
         try {
             const response = await fetch(rawUrl, options)
             const json = await response.json()
