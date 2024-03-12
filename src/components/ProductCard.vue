@@ -24,15 +24,19 @@
 </template>
 <script setup lang="ts">
 
-import { defineProps, inject, reactive } from 'vue';
-import { Product } from '../types';
+import { defineProps, inject, reactive, ref, watch } from 'vue';
+import { Product, ProductResponse } from '../types';
 import { CartItem } from '../types';
+import { useFetch } from '../composables/useServerData';
 
 const props = defineProps<{
-  product: Product
+    product: Product
 }>()
 
 const product = reactive<Product>(props.product)
+
+const url = ref("https://dummyjson.com/products")
+
 
 // mini cart
 const cartItems = inject<CartItem[]>('items') || [];
@@ -44,8 +48,6 @@ const onBuy = () => {
         cartItems.push({ product: product, quantity: 1 })
     }
 }
-
-
 
 
 </script>
