@@ -7,21 +7,25 @@ import { Ref, ref, toValue, watchEffect } from 'vue'
  * or sort-of wait for the result using watchEffect/watch if it needs to
  * programmatically react to the data
  */
-export function useFetch<T>(url: string|Ref<string>, options?: RequestInit) {
+export function useServerData<T>(url: string|Ref<string>, options?: RequestInit) {
     const data = ref<T|null>(null)
     const error = ref(null)
+    const loading = ref(false)
     /* depending on the url */
     watchEffect(async () => {
         const rawUrl = toValue(url)
-        data.value = null
         error.value = null
+        loading.value = true
         try {
             const response = await fetch(rawUrl, options)
             const json = await response.json()
             data.value = json
         } catch (err) {
+            data.value = null
             error.value = err as any
+        } finally {
+            loading.value = false
         }
     })
-    return { data, error }
+    return { data, error, loading }
 }

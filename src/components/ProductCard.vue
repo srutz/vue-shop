@@ -9,7 +9,7 @@
         </div>
         <div class="px-6 py-4 grow">
             <div class="font-bold text-xl mb-2">{{ product.title }}</div>
-            <p class="text-gray-700 text-base">{{ product.description }}
+            <p class="text-gray-700 text-base min-h-32">{{ product.description }}
             </p>
         </div>
     </router-link>
@@ -24,18 +24,15 @@
 </template>
 <script setup lang="ts">
 
-import { defineProps, inject, reactive, ref, watch } from 'vue';
-import { Product, ProductResponse } from '../types';
+import { defineProps, inject, reactive } from 'vue';
+import { Product } from '../types';
 import { CartItem } from '../types';
-import { useFetch } from '../composables/useServerData';
 
 const props = defineProps<{
     product: Product
 }>()
 
 const product = reactive<Product>(props.product)
-
-const url = ref("https://dummyjson.com/products")
 
 
 // mini cart
@@ -48,7 +45,6 @@ const onBuy = () => {
         cartItems.push({ product: product, quantity: 1 })
     }
 }
-
 
 </script>
 

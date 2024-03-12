@@ -26,7 +26,7 @@ const products = reactive<Product[]>([])
 const offset = ref(0)
 
 const loadProducts = async () => {
-    const response = await fetch(`https://dummyjson.com/products?skip=${offset.value}&limit=10`)
+    const response = await fetch(`https://dummyjson.com/products?skip=${offset.value}&limit=4`)
     const data = (await response.json()) as ProductResponse
     products.push(...data.products)
 }

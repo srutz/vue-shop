@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import './style.css'
+import './style.scss'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -22,3 +22,11 @@ const router = createRouter({
 const app = createApp(App)
 app.use(router)
 app.mount('#app')
+
+
+const developermode = !!(import.meta.env.VITE_DEVELOPERMODE)
+if (developermode) {
+    router.push('/about')
+}
+
+

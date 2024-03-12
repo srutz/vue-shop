@@ -4,7 +4,7 @@
 </template>
 <script setup lang="ts">
 
-import ProductsGallery from '../components/ProductsGallery.vue';
+import ProductsGallery from '../components/ProductsGalleryNew.vue';
 
 
 </script>
