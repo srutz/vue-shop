@@ -51,6 +51,8 @@ import { CartItem } from '../types';
 import { useCartItems } from '../cartstore';
 
 const cartStore = useCartItems()
+console.dir(cartStore)
+debugger
 
 const inc = (item: CartItem, n: number) => {
     // pinia store

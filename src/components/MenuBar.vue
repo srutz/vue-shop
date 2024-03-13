@@ -26,16 +26,12 @@ const cartStore = useCartItems()
 
 const router = useRouter()
 
-const cartItems = inject<Ref<CartItem[]>>('items');
 const opencart = () => {
     router.push("/cart")
 }
 
-const getCartQuantity = () => {
-    return cartItems?.value.reduce((acc, item) => acc + item.quantity, 0)
-}
-
 const getCartQuantity2 = () => {
+    const { items, changeQuantity } = cartStore
     return cartStore.$state.items.reduce((acc, item) => acc + item.quantity, 0)
 }
 
