@@ -11,6 +11,10 @@ body {
     height: 100vh;
 }
 
+h1 {
+    @apply text-xl pb-4 font-semibold;
+}
+
 #app {
     height: 100%;
     display: flex;

@@ -4,3 +4,5 @@
         <p>lorum ipsum, lorem something, lorem one two three</P>
     </div>
 </template>
+<script setup lang="ts">
+</script>

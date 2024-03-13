@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center bg-gray-800 p-4">
-        <h1 class="text-2xl text-gray-400 font-semibold select-none">My App</h1>
+        <h1 class="text-2xl text-gray-400 font-semibold select-none pb-0">My App</h1>
         <div class="flex gap-2 ml-8">
             <router-link to="/" class="text-white font-semibold">Home</router-link>
             <router-link to="/about" class="text-white font-semibold">About</router-link>
@@ -14,13 +14,13 @@
 </template>
 <script setup lang="ts">
 
-import { inject } from 'vue';
+import { Ref, inject } from 'vue';
 import { CartItem } from '../types';
 
-const cartItems = inject<CartItem[]>('items') || [];
+const cartItems = inject<Ref<CartItem[]>>('items');
 
 const getCartQuantity = () => {
-    return cartItems.reduce((acc, item) => acc + item.quantity, 0)
+    return cartItems?.value.reduce((acc, item) => acc + item.quantity, 0)
 }
 
 </script>

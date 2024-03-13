@@ -11,12 +11,12 @@
 
 <script setup lang="ts">
 
-import { reactive, provide, watchEffect } from 'vue'
+import { provide, watchEffect, ref } from 'vue'
 import { CartItem } from './types'
 import MenuBar from './components/MenuBar.vue'
 import { useHotKeys } from './composables/useHotKeys';
 
-const cartItems = reactive<CartItem[]>([])
+const cartItems = ref<CartItem[]>([])
 
 provide('items', cartItems)
 
