@@ -14,7 +14,11 @@ const router = createRouter({
         { path: '/product/:id', component: ProductDetails },
         { path: '/about', component: () => import('./pages/AboutPage.vue') },
         { path: '/cart', component: () => import('./pages/CartPage.vue') },
+        { path: '/impressum', component: () => import('./pages/Impressum.vue') },
     ],
+})
+router.beforeEach(async (to, from) => {
+    console.log("going from :" + from?.path + " to " + to.path)    
 })
 
 const app = createApp(App)

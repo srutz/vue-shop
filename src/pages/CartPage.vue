@@ -50,15 +50,15 @@ import { CartItem } from '../types';
 
 
 const cartItems = inject<Ref<CartItem[]>>('items');
+const inc = (item: CartItem, n: number) => {
+    item.quantity = Math.max(0, item.quantity + n)
+}
+
+
 const getSum = computed(() => {
     const s = cartItems?.value.reduce((acc, item) => acc + item.quantity * item.product.price, 0)
     return s?.toFixed(2)
 })
-const inc = (item: CartItem, n: number) => {
-    item.quantity = Math.max(0, item.quantity + n)
-    if (cartItems && item.quantity == 0) {
-        cartItems.value = cartItems?.value.filter((i) => i.quantity > 0)
-    }
-}
+
 
 </script>
