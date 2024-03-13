@@ -27,12 +27,15 @@
 import { Ref, defineProps, inject, reactive } from 'vue';
 import { Product } from '../types';
 import { CartItem } from '../types';
+import { useCartItems } from '../cartstore';
 
 const props = defineProps<{
     product: Product
 }>()
 
 const product = reactive<Product>(props.product)
+
+const cartStore = useCartItems()
 
 
 // mini cart
@@ -44,6 +47,9 @@ const onBuy = () => {
     } else {
         cartItems?.value.push({ product: product, quantity: 1 })
     }
+
+    // pinia store
+    cartStore.changeQuantity(1, product)
 }
 
 </script>

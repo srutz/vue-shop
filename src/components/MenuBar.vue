@@ -9,7 +9,10 @@
         <div class="flex-grow"></div>
         <div class="flex gap-2">
             <div @click="opencart" class="cursor-pointer select-none text-white font-semibold">Cart</div>
-            <span class="text-white font-semibold">{{ getCartQuantity() }}</span>
+            <span class="text-white font-semibold">
+                {{ getCartQuantity() }} //
+                {{ getCartQuantity2() }}
+            </span>
         </div>
     </div>
 </template>
@@ -18,6 +21,9 @@
 import { Ref, inject } from 'vue';
 import { CartItem } from '../types';
 import { useRoute, useRouter } from 'vue-router';
+import { useCartItems } from '../cartstore';
+
+const cartStore = useCartItems()
 
 const router = useRouter()
 
@@ -28,6 +34,10 @@ const opencart = () => {
 
 const getCartQuantity = () => {
     return cartItems?.value.reduce((acc, item) => acc + item.quantity, 0)
+}
+
+const getCartQuantity2 = () => {
+    return cartStore.$state.items.reduce((acc, item) => acc + item.quantity, 0)
 }
 
 const route = useRoute()

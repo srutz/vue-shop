@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import ProductsPage from './pages/ProductsPage.vue'
 import ProductDetails from './pages/ProductDetailsPage.vue'
+import { createPinia } from 'pinia'
 
 
 const router = createRouter({
@@ -21,8 +22,11 @@ router.beforeEach(async (to, from) => {
     console.log("going from :" + from?.path + " to " + to.path)    
 })
 
+const pinia = createPinia()
+
 const app = createApp(App)
 app.use(router)
+app.use(pinia)
 app.mount('#app')
 
 

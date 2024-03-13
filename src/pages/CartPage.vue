@@ -6,7 +6,7 @@
             Bitte erst einkaufen
         </div>
         <div v-else class="flex flex-col">
-            <div v-for="(item) in cartItems" :id="item.product.id.toString()"
+            <div v-for="(item) in cartStore.$state.items" :id="item.product.id.toString()"
                 class="mx-auto bg-white shadow-lg rounded-lg overflow-hidden w-96">
                 <div class="flex flex-col mb-8 mt-2">
 
@@ -36,7 +36,7 @@
             <div class="flex items-center self-center p-4 border-t w-96 gap-4">
                 <p class="text-sm font-bold text-gray-900">Total</p>
                 <div class="grow"></div>
-                <p class="text-sm font-bold text-gray-900">{{ getSum }}</p>
+                <p class="text-sm font-bold text-gray-900">{{ getSumViaStore }}</p>
             </div>
 
         </div>
@@ -48,15 +48,27 @@
 import { Ref, computed, inject } from 'vue';
 import { CartItem } from '../types';
 
+import { useCartItems } from '../cartstore';
 
 const cartItems = inject<Ref<CartItem[]>>('items');
+const cartStore = useCartItems()
+
 const inc = (item: CartItem, n: number) => {
+    // inject/provide
     item.quantity = Math.max(0, item.quantity + n)
+
+    // pinia store
+    cartStore.changeQuantity(n, item.product)
 }
 
 
 const getSum = computed(() => {
     const s = cartItems?.value.reduce((acc, item) => acc + item.quantity * item.product.price, 0)
+    return s?.toFixed(2)
+})
+
+const getSumViaStore = computed(() => {
+    const s = cartStore.$state.items?.reduce((acc, item) => acc + item.quantity * item.product.price, 0)
     return s?.toFixed(2)
 })
 
