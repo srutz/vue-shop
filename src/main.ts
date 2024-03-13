@@ -5,8 +5,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import ProductsPage from './pages/ProductsPage.vue'
 import ProductDetails from './pages/ProductDetailsPage.vue'
-import AboutPage from './pages/AboutPage.vue'
-import CartPage from './pages/CartPage.vue'
 
 
 const router = createRouter({
@@ -14,8 +12,8 @@ const router = createRouter({
     routes: [
         { path: '/', component: ProductsPage },
         { path: '/product/:id', component: ProductDetails },
-        { path: '/about', component: AboutPage },
-        { path: '/cart', component: CartPage },
+        { path: '/about', component: () => import('./pages/AboutPage.vue') },
+        { path: '/cart', component: () => import('./pages/CartPage.vue') },
     ],
 })
 
