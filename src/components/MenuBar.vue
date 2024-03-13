@@ -23,7 +23,9 @@ const router = useRouter()
 
 const cartItems = inject<Ref<CartItem[]>>('items');
 const opencart = () => {
-    router.push("/cart")
+    router.push({
+        name: "scart"
+    })
 }
 
 const getCartQuantity = () => {

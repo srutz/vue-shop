@@ -4,7 +4,11 @@
   <div class="flex flex-col grow">
     <MenuBar></MenuBar>
     <div class="p-4 h-2 grow overflow-y-auto round">
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <transition name="slide-fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
   </div>
 </template>
