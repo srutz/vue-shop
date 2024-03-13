@@ -10,7 +10,6 @@
         <div class="flex gap-2">
             <div @click="opencart" class="cursor-pointer select-none text-white font-semibold">Cart</div>
             <span class="text-white font-semibold">
-                {{ getCartQuantity() }} //
                 {{ getCartQuantity2() }}
             </span>
         </div>

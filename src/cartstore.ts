@@ -1,18 +1,14 @@
 import { defineStore } from 'pinia'
 import { CartItem, Product } from './types'
 
-type CartItemsState = {
-    items: CartItem[]
-}
-
-type Getters = {
-}
-
+type CartItemsState = { items: CartItem[] }
+type Getters = { }
 type Actions = {
     changeQuantity(delta: number, product: Product): void
 }
 
-export const useCartItems = defineStore<'cartitems', CartItemsState, Getters, Actions>('cartitems', {
+export const useCartItems = 
+defineStore<'cartitems', CartItemsState, Getters, Actions>('cartitems', {
     state: () => ({
         items: [],
     }),

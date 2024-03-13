@@ -2,7 +2,7 @@
     <div class="flex flex-col grow">
         <h1>Cart</h1>
 
-        <div v-if="cartItems && cartItems.length <= 0">
+        <div v-if="cartStore.$state.items && cartStore.$state.items.length <= 0">
             Bitte erst einkaufen
         </div>
         <div v-else class="flex flex-col">
@@ -45,27 +45,19 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, computed, inject } from 'vue';
+import { computed } from 'vue';
 import { CartItem } from '../types';
 
 import { useCartItems } from '../cartstore';
 
-const cartItems = inject<Ref<CartItem[]>>('items');
 const cartStore = useCartItems()
 
 const inc = (item: CartItem, n: number) => {
-    // inject/provide
-    item.quantity = Math.max(0, item.quantity + n)
-
     // pinia store
     cartStore.changeQuantity(n, item.product)
 }
 
 
-const getSum = computed(() => {
-    const s = cartItems?.value.reduce((acc, item) => acc + item.quantity * item.product.price, 0)
-    return s?.toFixed(2)
-})
 
 const getSumViaStore = computed(() => {
     const s = cartStore.$state.items?.reduce((acc, item) => acc + item.quantity * item.product.price, 0)
